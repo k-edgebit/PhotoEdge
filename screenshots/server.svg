@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="780" viewBox="0 0 360 780" font-family="'Segoe UI', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16213e"/>
+      <stop offset="1" stop-color="#0f3460"/>
+    </linearGradient>
+  </defs>
+  <rect width="360" height="780" fill="url(#bg)"/>
+  <text x="180" y="120" fill="#eaeaf2" font-size="30" text-anchor="middle" font-weight="600">서버 안내</text>
+  <rect x="40" y="170" width="280" height="120" rx="14" fill="#1c2a4a" stroke="#2c3e6b"/>
+  <text x="60" y="205" fill="#8a93b0" font-size="16">Wi-Fi 주소</text>
+  <text x="60" y="240" fill="#eaeaf2" font-size="22">http://192.168.0.10:8080</text>
+  <rect x="40" y="310" width="280" height="100" rx="14" fill="#1c2a4a" stroke="#2c3e6b"/>
+  <text x="60" y="345" fill="#8a93b0" font-size="16">연결 PIN</text>
+  <text x="60" y="380" fill="#eaeaf2" font-size="28" letter-spacing="8">1234</text>
+  <rect x="40" y="440" width="280" height="56" rx="14" fill="#2c6fbb"/>
+  <text x="180" y="475" fill="#ffffff" font-size="18" text-anchor="middle">서버 켜기</text>
+  <rect x="40" y="520" width="280" height="120" rx="14" fill="#1c2a4a" stroke="#2c3e6b"/>
+  <text x="60" y="552" fill="#8a93b0" font-size="15">1. 같은 Wi-Fi에 연결하세요</text>
+  <text x="60" y="582" fill="#8a93b0" font-size="15">2. 주소를 열고 PIN을 입력</text>
+  <text x="60" y="612" fill="#8a93b0" font-size="15">3. 사진·동영상을 업로드</text>
+</svg>

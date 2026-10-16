@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="780" viewBox="0 0 360 780" font-family="'Segoe UI', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1a1a2e"/>
+      <stop offset="1" stop-color="#16213e"/>
+    </linearGradient>
+  </defs>
+  <rect width="360" height="780" fill="url(#bg)"/>
+  <text x="180" y="90" fill="#eaeaf2" font-size="28" text-anchor="middle" font-weight="600">설정</text>
+  <rect x="30" y="130" width="300" height="70" rx="12" fill="#24243a"/>
+  <text x="50" y="165" fill="#eaeaf2" font-size="17">전환 간격</text>
+  <text x="300" y="165" fill="#8a8aa0" font-size="17" text-anchor="end">5초</text>
+  <rect x="30" y="215" width="300" height="70" rx="12" fill="#24243a"/>
+  <text x="50" y="250" fill="#eaeaf2" font-size="17">전환 효과</text>
+  <text x="300" y="250" fill="#8a8aa0" font-size="17" text-anchor="end">페이드</text>
+  <rect x="30" y="300" width="300" height="70" rx="12" fill="#24243a"/>
+  <text x="50" y="335" fill="#eaeaf2" font-size="17">화면 켜짐 유지</text>
+  <circle cx="300" cy="335" r="16" fill="#2c6fbb"/>
+  <circle cx="300" cy="335" r="6" fill="#ffffff"/>
+  <rect x="30" y="385" width="300" height="70" rx="12" fill="#24243a"/>
+  <text x="50" y="420" fill="#eaeaf2" font-size="17">동영상 음소거</text>
+  <circle cx="300" cy="420" r="16" fill="#3a3a52"/>
+  <circle cx="300" cy="420" r="6" fill="#8a8aa0"/>
+  <rect x="30" y="470" width="300" height="70" rx="12" fill="#24243a"/>
+  <text x="50" y="505" fill="#eaeaf2" font-size="17">저장 공간</text>
+  <text x="300" y="505" fill="#8a8aa0" font-size="17" text-anchor="end">24장 · 512MB</text>
+  <rect x="30" y="560" width="300" height="56" rx="12" fill="#5a2a2a"/>
+  <text x="180" y="595" fill="#f0a0a0" font-size="17" text-anchor="middle">전체 초기화</text>
+</svg>

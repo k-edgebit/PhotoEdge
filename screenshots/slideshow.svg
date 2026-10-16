@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="780" viewBox="0 0 360 780" font-family="'Segoe UI', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1a1a2e"/>
+      <stop offset="1" stop-color="#16213e"/>
+    </linearGradient>
+    <linearGradient id="photo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3b5998"/>
+      <stop offset="1" stop-color="#8e44ad"/>
+    </linearGradient>
+  </defs>
+  <rect width="360" height="780" fill="url(#bg)"/>
+  <rect x="10" y="30" width="340" height="620" rx="18" fill="#0f0f1a" stroke="#2a2a3d" stroke-width="2"/>
+  <rect x="18" y="38" width="324" height="604" rx="12" fill="url(#photo)"/>
+  <circle cx="180" cy="300" r="90" fill="#ffffff" opacity="0.12"/>
+  <text x="180" y="300" fill="#ffffff" font-size="26" text-anchor="middle" opacity="0.9">사진</text>
+  <rect x="18" y="600" width="324" height="42" fill="#000000" opacity="0.35"/>
+  <text x="180" y="626" fill="#ffffff" font-size="18" text-anchor="middle">3 / 12</text>
+  <rect x="70" y="600" width="50" height="42" fill="#000000" opacity="0.5"/>
+  <rect x="240" y="600" width="50" height="42" fill="#000000" opacity="0.5"/>
+  <text x="95" y="626" fill="#ffffff" font-size="22" text-anchor="middle">‹</text>
+  <text x="265" y="626" fill="#ffffff" font-size="22" text-anchor="middle">›</text>
+  <rect x="30" y="620" width="40" height="40" rx="20" fill="#ffffff" opacity="0.15"/>
+  <text x="50" y="647" fill="#ffffff" font-size="18" text-anchor="middle">☰</text>
+</svg>

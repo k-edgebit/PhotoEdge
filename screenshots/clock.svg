@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="780" viewBox="0 0 360 780" font-family="'Segoe UI', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d0d1a"/>
+      <stop offset="1" stop-color="#1a1a2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="360" height="780" fill="url(#bg)"/>
+  <text x="180" y="320" fill="#eaeaf2" font-size="110" text-anchor="middle" font-weight="300">22:47</text>
+  <text x="180" y="380" fill="#8a8aa0" font-size="24" text-anchor="middle">10월 16일 금요일</text>
+  <rect x="90" y="430" width="180" height="40" rx="20" fill="#2a2a3d"/>
+  <text x="180" y="456" fill="#9aa0b4" font-size="18" text-anchor="middle">취침 모드</text>
+  <circle cx="180" cy="560" r="26" fill="none" stroke="#4a4a63" stroke-width="2"/>
+  <circle cx="180" cy="560" r="12" fill="#4a4a63"/>
+</svg>

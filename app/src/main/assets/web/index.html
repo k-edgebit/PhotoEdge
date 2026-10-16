@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhotoEdge - 스마트 전자액자 사진 전송</title>
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --success: #10b981;
+            --danger: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 36px 32px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .header .badge {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.15);
+            color: #818cf8;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: var(--text-sub);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .pin-group {
+            margin-bottom: 24px;
+        }
+
+        .pin-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-sub);
+            margin-bottom: 8px;
+        }
+
+        .pin-input {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 12px 16px;
+            color: #fff;
+            font-size: 16px;
+            letter-spacing: 2px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .pin-input:focus {
+            border-color: var(--primary);
+        }
+
+        .drop-zone {
+            border: 2px dashed rgba(99, 102, 241, 0.4);
+            border-radius: 16px;
+            padding: 36px 20px;
+            text-align: center;
+            background: rgba(15, 23, 42, 0.3);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 24px;
+        }
+
+        .drop-zone.dragover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+            transform: scale(1.01);
+        }
+
+        .drop-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        .drop-text {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .drop-hint {
+            font-size: 12px;
+            color: var(--text-sub);
+        }
+
+        .file-list {
+            margin-bottom: 20px;
+            max-height: 180px;
+            overflow-y: auto;
+            border-radius: 12px;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(15, 23, 42, 0.4);
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-bottom: 6px;
+            font-size: 13px;
+        }
+
+        .file-name {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 320px;
+        }
+
+        .file-size {
+            color: var(--text-sub);
+            font-size: 11px;
+            margin-left: 8px;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 999px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #6366f1, #818cf8);
+            transition: width 0.3s ease;
+        }
+
+        .btn-upload {
+            width: 100%;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 14px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .btn-upload:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-upload:disabled {
+            background: #475569;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .status-msg {
+            margin-top: 16px;
+            text-align: center;
+            font-size: 13px;
+            min-height: 20px;
+        }
+
+        .status-msg.success { color: var(--success); }
+        .status-msg.error { color: var(--danger); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <span class="badge">Local Wi-Fi Transfer</span>
+            <h1>PhotoEdge 액자 전송</h1>
+            <p>스마트 전자액자에 표시할 사진과 동영상을 선택하세요.<br>전송 완료 즉시 액자 슬라이드쇼에 반영됩니다.</p>
+        </div>
+
+        <div class="pin-group">
+            <label for="pinCode">액자 화면에 표시된 PIN 코드</label>
+            <input type="text" id="pinCode" class="pin-input" placeholder="액자의 4자리 PIN 입력" maxlength="6" value="1234">
+        </div>
+
+        <div class="drop-zone" id="dropZone">
+            <div class="drop-icon">🖼️</div>
+            <div class="drop-text">사진 또는 동영상을 이곳에 드래그하세요</div>
+            <div class="drop-hint">또는 클릭하여 파일 선택 (JPG, PNG, WebP, MP4)</div>
+            <input type="file" id="fileInput" multiple accept="image/*,video/mp4" style="display: none;">
+        </div>
+
+        <div class="file-list" id="fileList"></div>
+
+        <div class="progress-bar-container" id="progressContainer">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <button class="btn-upload" id="uploadBtn" disabled>액자로 전송하기</button>
+        <div class="status-msg" id="statusMsg"></div>
+    </div>
+
+    <script>
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const fileList = document.getElementById('fileList');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const pinInput = document.getElementById('pinCode');
+        const progressContainer = document.getElementById('progressContainer');
+        const progressBar = document.getElementById('progressBar');
+        const statusMsg = document.getElementById('statusMsg');
+
+        let selectedFiles = [];
+
+        dropZone.addEventListener('click', () => fileInput.click());
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('dragover');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            handleFiles(e.dataTransfer.files);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
+
+        function handleFiles(files) {
+            for (const file of files) {
+                selectedFiles.push(file);
+            }
+            renderFileList();
+        }
+
+        function renderFileList() {
+            fileList.innerHTML = '';
+            selectedFiles.forEach((file, index) => {
+                const item = document.createElement('div');
+                item.className = 'file-item';
+                item.innerHTML = `
+                    <span class="file-name">${file.name}</span>
+                    <span class="file-size">${(file.size / 1024 / 1024).toFixed(2)} MB</span>
+                `;
+                fileList.appendChild(item);
+            });
+            uploadBtn.disabled = selectedFiles.length === 0;
+        }
+
+        uploadBtn.addEventListener('click', async () => {
+            if (selectedFiles.length === 0) return;
+            const pin = pinInput.value.trim();
+            if (!pin) {
+                setStatus('액자의 PIN 코드를 입력해주세요.', 'error');
+                return;
+            }
+
+            uploadBtn.disabled = true;
+            progressContainer.style.display = 'block';
+            progressBar.style.width = '0%';
+            setStatus('업로드 중...', '');
+
+            let successCount = 0;
+            let failCount = 0;
+
+            for (let i = 0; i < selectedFiles.length; i++) {
+                const file = selectedFiles[i];
+                const formData = new FormData();
+                formData.append('file', file);
+                formData.append('pin', pin);
+
+                try {
+                    const response = await fetch('/api/upload', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (response.ok) {
+                        successCount++;
+                    } else {
+                        failCount++;
+                    }
+                } catch (e) {
+                    failCount++;
+                }
+
+                const percent = Math.round(((i + 1) / selectedFiles.length) * 100);
+                progressBar.style.width = percent + '%';
+            }
+
+            if (failCount === 0) {
+                setStatus(`성공적으로 ${successCount}개 파일이 액자에 전송되었습니다!`, 'success');
+                selectedFiles = [];
+                renderFileList();
+            } else {
+                setStatus(`${successCount}개 성공, ${failCount}개 실패 (PIN 코드 또는 Wi-Fi 연결을 확인하세요)`, 'error');
+            }
+
+            uploadBtn.disabled = selectedFiles.length === 0;
+            setTimeout(() => {
+                progressContainer.style.display = 'none';
+            }, 3000);
+        });
+
+        function setStatus(text, type) {
+            statusMsg.textContent = text;
+            statusMsg.className = 'status-msg ' + (type || '');
+        }
+    </script>
+</body>
+</html>
